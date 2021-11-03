@@ -55,6 +55,43 @@ class ProductController extends AbstractController
         return $this->render('admin/product_add.html.twig', ['productForm' => $productForm->createView()]);
     }
 
-    // Après avoir fait la fonction qui crée un nouveau produit, crée la fonction qui modifie un produit
-    // et la fonction qui supprime un produit
+    /**
+     * @Route("/admin/update/product/{id}", name="admin_update_product")
+     */
+    public function adminUpdateProduct(
+        $id,
+        EntityManagerInterface $entityManagerInterface,
+        Request $request,
+        ProductRepository $productRepository
+    ) {
+
+        $product = $productRepository->find($id);
+
+        $productForm = $this->createForm(ProductType::class, $product);
+
+        $productForm->handleRequest($request);
+
+        if ($productForm->isSubmitted() && $productForm->isValid()) {
+
+            $entityManagerInterface->persist($product);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('admin_list_product');
+        }
+
+        return $this->render('admin/product_add.html.twig', ['productForm' => $productForm->createView()]);
+    }
+
+    /**
+     * @Route("/admin/delete/product/{id}", name="admin_delete_product")
+     */
+    public function adminDeleteProduct($id, ProductRepository $productRepository, EntityManagerInterface $entityManagerInterface)
+    {
+        $product = $productRepository->find($id);
+
+        $entityManagerInterface->remove($product);
+        $entityManagerInterface->flush();
+
+        return $this->redirectToRoute('admin_list_product');
+    }
 }

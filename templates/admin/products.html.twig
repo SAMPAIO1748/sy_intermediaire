@@ -9,6 +9,8 @@
 		<h3>{{ product.price }}</h3>
 		<h3>{{ product.stock }}</h3>
 		<h4>{{ product.category.name }}</h4>
+		<a href="{{ path('admin_update_product', {'id' : product.id }) }}">Modifier le produit</a>
+		<a href="{{ path('admin_delete_product', {'id' : product.id}) }}">Supprimer le produit</a>
 	{% endfor %}
 
 {% endblock %}
