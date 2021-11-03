@@ -48,6 +48,7 @@ class ProductController extends AbstractController
 
             $entityManagerInterface->persist($product);
             $entityManagerInterface->flush();
+            $this->addFlash('notice', 'Votre produit a été créé.');
 
             return $this->redirectToRoute('admin_list_product');
         }
@@ -75,6 +76,7 @@ class ProductController extends AbstractController
 
             $entityManagerInterface->persist($product);
             $entityManagerInterface->flush();
+            $this->addFlash('notice', 'Le produit a été modifié.');
 
             return $this->redirectToRoute('admin_list_product');
         }
@@ -91,7 +93,11 @@ class ProductController extends AbstractController
 
         $entityManagerInterface->remove($product);
         $entityManagerInterface->flush();
+        $this->addFlash('notice', 'Votre produit a été supprimé');
 
         return $this->redirectToRoute('admin_list_product');
     }
+
+    // Dans le dossier Admin, créer un CategoryController avec toutes les fonctions pour le CRUD.
+
 }
