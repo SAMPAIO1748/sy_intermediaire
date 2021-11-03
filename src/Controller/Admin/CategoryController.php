@@ -48,7 +48,7 @@ class CategoryController extends AbstractController
 
             $entityManagerInterface->persist($category);
             $entityManagerInterface->flush();
-            $this->addFlash('notice', 'Votre produit a été créé.');
+            $this->addFlash('notice', 'Votre catégorie a été créée.');
 
             return $this->redirectToRoute('admin_list_category');
         }

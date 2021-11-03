@@ -2,6 +2,9 @@
 
 
 {% block main %}
+	{% for cat in cats.getAll() %}
+		<h3>{{ cat.name }}</h3>
+	{% endfor %}
 	<h2>{{ product.name }}</h2>
 	<p>{{ product.description }}</p>
 	<h3>{{ product.price }}</h3>

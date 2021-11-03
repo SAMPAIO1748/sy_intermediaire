@@ -2,6 +2,10 @@
 
 {% block main %}
 
+	{% for cat in cats.getAll() %}
+		<h3>{{ cat.name }}</h3>
+	{% endfor %}
+
 	{% for message in app.flashes('notice') %}
 		{{ message }}
 	{% endfor %}
