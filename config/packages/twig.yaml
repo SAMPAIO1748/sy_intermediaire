@@ -3,7 +3,6 @@ twig:
 
   globals:
     batman: "Batman"
-    cats: '@App\Globals\Categories'
 
 when@test:
   twig:
