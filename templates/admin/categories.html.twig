@@ -1,0 +1,17 @@
+{% extends "admin/home.html.twig" %}
+
+{% block main %}
+
+	{% for category in categories %}
+		<h2>{{ category.name }}</h2>
+		<p>
+			{{ category.description }}
+		</p>
+		<a href="{{ path('admin_update_category', {'id' : category.id}) }}">Modifier la catégorie</a>
+		<a href="{{ path('admin_delete_category', {'id' : category.id}) }}">Supprimer la catégorie</a>
+		<hr>
+	{% endfor %}
+
+	<a href="{{ path('admin_create_category') }}">Ajouter une catégorie</a>
+
+{% endblock %}
